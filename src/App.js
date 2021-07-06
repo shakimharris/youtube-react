@@ -1,23 +1,34 @@
 import React, { Component } from "react";
 import Home from "./containers/Home/Home";
 import { AppLayout } from "./components/AppLayout/AppLayout";
+import Loading from "./components/Auth/Loading";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Watch from "./containers/Watch/Watch";
 import AuthenticationButton from "./components/Auth/authentication-button";
+import { withAuth0 } from "@auth0/auth0-react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { youtubeLibraryLoaded } from "./store/actions/api";
 import Trending from "./containers/Trending/Trending";
 import Search from "./containers/Search/Search";
+import { useAuth0 } from "@auth0/auth0-react";
+import ProtectedRoute from "./components/Auth/protected-route";
 
 const API_KEY = process.env.REACT_APP_YT_API_KEY;
 
 class App extends Component {
   render() {
+    const { isLoading } = this.props.auth0;
+
+    if (isLoading) {
+      return <Loading />;
+    }
+
     return (
       <AppLayout>
         <Switch>
-          <Route path="/feed/trending" component={Trending} />
+          <ProtectedRoute path="/feed/trending" component={Trending} />
+
           <Route
             path="/results"
             render={() => <Search key={this.props.location.key} />}
@@ -26,7 +37,8 @@ class App extends Component {
             path="/watch"
             render={() => <Watch key={this.props.location.key} />}
           />
-          <Route path="/" component={Home} />
+
+          <ProtectedRoute path="/" component={Home} />
         </Switch>
       </AppLayout>
     );
@@ -56,4 +68,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ youtubeLibraryLoaded }, dispatch);
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withAuth0(withRouter(connect(null, mapDispatchToProps)(App)));
