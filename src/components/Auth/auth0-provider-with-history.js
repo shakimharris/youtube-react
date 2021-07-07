@@ -3,13 +3,12 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { withRouter } from "react-router-dom";
 
 class Auth0ProviderWithHistory extends React.Component {
-  //REACT_APP_AUTH0_DOMAIN = dev - clonetv.us.auth0.com;
-  //REACT_APP_AUTH0_CLIENT_ID = IcICom3h2gQynmys94VnywEQy1I8iW99;
-  domain = "dev-clonetv.us.auth0.com";
+  domain = process.env.REACT_APP_AUTH0_DOMAIN;
+  //"dev-clonetv.us.auth0.com";
   //process.env.REACT_APP_AUTH0_DOMAIN;
-  clientId = "IcICom3h2gQynmys94VnywEQy1I8iW99";
-  //process.env.REACT_APP_AUTH0_CLIENT_ID;
-  audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+  clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
+  //audience = process.env.REACT_APP_AUTH0_AUDIENCE;
 
   onRedirectCallback = (appState) => {
     this.props.history.push(
