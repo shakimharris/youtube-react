@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hapi-dev-224612-authRole",
+      "UnauthRoleArn": "arn:aws:iam::159307193347:role/amplify-hapi-dev-224612-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::159307193347:role/amplify-hapi-dev-224612-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-hapi-dev-224612-deployment",
+      "UnauthRoleName": "amplify-hapi-dev-224612-unauthRole",
+      "StackName": "amplify-hapi-dev-224612",
+      "StackId": "arn:aws:cloudformation:us-east-1:159307193347:stack/amplify-hapi-dev-224612/96a7c740-1ce1-11ec-8047-0a0218ab9303",
+      "AmplifyAppId": "d1sd1bd2bial8k"
+    },
+    "categories": {
+      "auth": {
+        "hapi33be0711": {}
+      }
+    }
+  }
+}
